@@ -1,0 +1,127 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #B17F59;
+    color: #EDE8DC;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #A5B68D;
+    color: #EDE8DC;
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: background 0.3s ease;
+}
+.logo {
+    font-size: 24px;
+    padding-left: 20px;
+}
+nav {
+    padding-right: 20px;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+nav ul li {
+    position: relative;
+}
+nav ul li a {
+    color: #EDE8DC;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+    transition: color 0.3s ease;
+    display: block;
+    padding: 10px 0;
+}
+nav ul li a.active {
+    color: #C1CFA1;
+}
+nav ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #A5B68D;
+    border-top: 1px solid #C1CFA1;
+    padding: 10px 0;
+    min-width: 250px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    flex-direction: column;
+}
+nav ul li:hover > ul {
+    display: block;
+}
+nav ul li ul li a {
+    margin: 0;
+    padding: 8px 15px;
+    text-align: left;
+}
+nav ul li ul li a:hover {
+    background-color: #C1CFA1;
+    color: #EDE8DC;
+}
+.sql-hero {
+    background: url('/img/background.png') no-repeat center center;
+    background-size: cover;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #EDE8DC;
+    font-size: 36px;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    margin-top: 80px;
+}
+main {
+    padding: 20px;
+    color: #EDE8DC;
+    padding-top: 20px;
+}
+main h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    color: #EDE8DC;
+    text-align: left;
+}
+main p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+.sql-statement {
+    background-color: #C1CFA1;
+    color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 20px;
+    text-align: center;
+    margin: 30px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+footer {
+    background: #A5B68D;
+    color: #EDE8DC;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+}

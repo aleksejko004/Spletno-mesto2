@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL jezik - Osnove</title>
+    <link rel="stylesheet" href="css/unified/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Seminar o podatkovnih bazah</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="zgodovina.html">Zgodovina</a></li>
+                <li><a href="supb.html">SUPB</a></li>
+                <li>
+                    <a href="#" class="active-parent">SQL</a>
+                    <ul>
+                        <li><a href="sql_jezik.html" class="active">Specifični SQL jezik</a></li>
+                        <li><a href="sql_viewi.html">Viewi - kaj so in zakaj so uporabni</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+    <div class="sql-hero">Osnove SQL jezika</div>
+    <main>
+        <div class="flex-container">
+            <div class="text-section">
+                <h2>Osnovni SQL stavki</h2>
+                <p>
+                    Začnimo z osnovnim SQL stavkom, ki se uporablja za pridobivanje podatkov iz podatkovne baze. Poglejmo si primer in razložimo, kaj pomeni.
+                </p>
+                <p>
+                    Predstavljajte si, da imate tabelo z imenom <code>customers</code>, ki vsebuje informacije o vaših strankah. Če želite videti vse podatke iz te tabele, lahko uporabite naslednji SQL stavek:
+                </p>
+            </div>
+
+        </div>
+        
+        <div class="sql-statement">
+            SELECT * FROM customers;
+        </div>
+
+        <div class="highlight-box">
+            <p><strong>Razlaga:</strong> Ta stavek je sestavljen iz dveh ključnih delov:</p>
+            <ul>
+                <li><code>SELECT *</code>: To pomeni, da želite izbrati <strong>vse stolpce</strong> iz tabele. Zvezdica (<code>*</code>) je kratica za "vse".</li>
+                <li><code>FROM customers</code>: To določa, iz katere tabele želite pridobiti podatke.</li>
+            </ul>
+            <p>Torej, ta preprosti SQL stavek vam bo vrnil vse vrstice in vse stolpce iz tabele <code>customers</code>.</p>
+        </div>
+
+        <h2>Dodajanje novih podatkov (INSERT)</h2>
+        <p>
+            Za dodajanje novih zapisov v tabelo uporabljamo stavek <code>INSERT INTO</code>. Poglejmo si primer, kako dodati novo stranko v tabelo <code>customers</code>.
+        </p>
+
+        <div class="sql-statement">
+            INSERT INTO customers (customer_name, email, city)
+            VALUES ('Ana Novak', 'ana.novak@email.si', 'Ljubljana');
+        </div>
+
+
+
+        <p>
+            <strong>Kaj ta stavek naredi?</strong> Ta stavek dodaja novo vrstico v tabelo <code>customers</code>. Določeni so stolpci (<code>customer_name</code>, <code>email</code>, <code>city</code>) in vrednosti, ki se bodo vstavile v te stolpce (<code>'Ana Novak'</code>, <code>'ana.novak@email.si'</code>, <code>'Ljubljana'</code>). Vrstni red vrednosti mora ustrezati vrstnemu redu stolpcev.
+        </p>
+
+        <div class="flex-container">
+            <div class="text-section">
+                <h2>Spreminjanje obstoječih podatkov (UPDATE)</h2>
+                <p>
+                    Za spreminjanje obstoječih zapisov v tabeli uporabljamo stavek <code>UPDATE</code>. Na primer, če želimo posodobiti e-poštni naslov stranke z imenom 'Ana Novak'.
+                </p>
+                <div class="sql-statement">
+                    UPDATE customers
+                    SET email = 'ana.n@novi-email.si'
+                    WHERE customer_name = 'Ana Novak';
+                </div>
+                <p>
+                    <strong>Kaj ta stavek naredi?</strong> Ta stavek posodablja vrstice v tabeli <code>customers</code>. Ključna dela sta:
+                </p>
+                <ul>
+                    <li><code>SET email = 'ana.n@novi-email.si'</code>: Določa, kateri stolpec naj se posodobi in na katero vrednost.</li>
+                    <li><code>WHERE customer_name = 'Ana Novak'</code>: Določa, katere vrstice naj se posodobijo. <strong>Pomembno je uporabiti klavzulo <code>WHERE</code>, sicer se bodo posodobili vsi zapisi v tabeli!</strong></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <h2>Brisanje podatkov (DELETE)</h2>
+        <div class="info-card">
+            <h3>Opozorilo pri brisanju</h3>
+            <p>Če izpustite klavzulo <code>WHERE</code> pri stavku DELETE, se bodo izbrisali <strong>vsi zapisi</strong> iz tabele! Bodite zelo previdni pri uporabi DELETE stavka.</p>
+        </div>
+        
+        <p>
+            Za brisanje obstoječih zapisov iz tabele uporabljamo stavek <code>DELETE FROM</code>. Na primer, če želimo izbrisati stranko z imenom 'Ana Novak'.
+        </p>
+
+        <div class="sql-statement">
+            DELETE FROM customers
+            WHERE customer_name = 'Ana Novak';
+        </div>
+
+        <p>
+            <strong>Kaj ta stavek naredi?</strong> Ta stavek briše vrstice iz tabele <code>customers</code>. Podobno kot pri <code>UPDATE</code>, klavzula <code>WHERE</code> (<code>WHERE customer_name = 'Ana Novak'</code>) določa, katere vrstice naj se izbrišejo.
+        </p>
+
+        <h2>Ustvarjanje in spreminjanje struktur</h2>
+        
+        <div class="card-container">
+            <div class="info-card">
+                <h3>Ustvarjanje nove tabele (CREATE TABLE)</h3>
+                <div class="sql-statement">
+                    CREATE TABLE orders (
+                        order_id INT PRIMARY KEY AUTO_INCREMENT,
+                        customer_id INT,
+                        order_date DATE,
+                        total_amount DECIMAL(10, 2)
+                    );
+                </div>
+                <p>Ta stavek ustvari novo tabelo z imenom <code>orders</code> s štirimi stolpci, vključno s primarnim ključem.</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>Spreminjanje strukture (ALTER TABLE)</h3>
+                <div class="sql-statement">
+                    ALTER TABLE orders
+                    ADD delivery_address VARCHAR(255);
+                </div>
+                <p>Ta stavek spreminja tabelo <code>orders</code> tako, da ji doda nov stolpec z imenom <code>delivery_address</code>.</p>
+            </div>
+        </div>
+        
+        <div class="highlight-box">
+            <p>
+                To je le pregled nekaterih osnovnih in pogosto uporabljenih SQL stavkov. SQL je zelo močan jezik z mnogimi drugimi funkcijami in klavzulami, ki omogočajo kompleksno upravljanje podatkov. Vabimo vas, da nadaljujete z raziskovanjem ostalih delov seminarja za podrobnejše razlage in primere uporabe.
+            </p>
+        </div>
+    </main>
+    <footer>&copy; 2025 Seminar o podatkovnih bazah</footer>
+</body>
+</html>

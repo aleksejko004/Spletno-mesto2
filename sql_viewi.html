@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Viewi (Poizvedbe)</title>
+    <link rel="stylesheet" href="css/unified/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Seminar o podatkovnih bazah</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="zgodovina.html">Zgodovina</a></li>
+                <li><a href="supb.html">SUPB</a></li>
+                <li>
+                    <a href="#" class="active-parent">SQL</a>
+                    <ul>
+                        <li><a href="sql_jezik.html">Specifični SQL jezik</a></li>
+                        <li><a href="sql_viewi.html" class="active">Viewi - kaj so in zakaj so uporabni</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+    <div class="views-hero">Kaj so SQL Viewi?</div>
+    <main>
+        <div class="flex-container">
+            <div class="text-section">
+                <h2>SQL Viewi (Pogledi) - Virtualne tabele</h2>
+                <p>
+                    Poglejmo si, kaj so SQL viewi (pogledi) in zakaj so tako uporabni pri delu s podatkovnimi bazami.
+                </p>
+                <div class="highlight-box">
+                    <p><strong>Definicija:</strong> View je shranjena poizvedba, ki deluje kot virtualna tabela. Poenostavi dostop do podatkov iz več tabel in omogoča varnejši dostop do podatkov.</p>
+                </div>
+                <p>
+                    Predstavljajte si, da pogosto potrebujete kombinirati podatke iz dveh ali več tabel. Namesto da bi vsakič pisali kompleksno SQL poizvedbo, lahko ustvarite <strong>view</strong>. View je shranjena poizvedba, ki deluje kot virtualna tabela.
+                </p>
+            </div>
+
+        </div>
+        
+        <h2>Kako ustvariti SQL View</h2>
+        <p>
+            Na primer, recimo da imate dve tabeli: <code>orders</code> (naročila) in <code>customers</code> (stranke). Če želite pogosto videti seznam naročil skupaj z imenom stranke, lahko ustvarite view, ki združuje te dve tabeli:
+        </p>
+
+        <div class="sql-statement">
+            CREATE VIEW customer_orders AS
+            SELECT o.order_id, c.customer_name, o.order_date
+            FROM orders o
+            JOIN customers c ON o.customer_id = c.customer_id;
+        </div>
+
+
+
+        <div class="highlight-box">
+            <p>Ko je view ustvarjen, ga lahko uporabljate kot navadno tabelo. Na primer, če želite videti vse podatke iz tega viewa, lahko preprosto napišete:</p>
+            <div class="sql-statement" style="margin-top: 10px; margin-bottom: 10px;">
+                SELECT * FROM customer_orders;
+            </div>
+            <p>To bo vrnilo rezultat združene poizvedbe, ne da bi morali vsakič ponovno pisati celoten <code>JOIN</code> stavek.</p>
+        </div>
+
+        <h2>Prednosti uporabe Viewov</h2>
+        <div class="card-container">
+            <div class="info-card">
+                <h3>Poenostavitev kompleksnih poizvedb</h3>
+                <p>Viewi skrijejo kompleksnost združevanja in filtriranja podatkov. Kompleksna poizvedba se zapiše enkrat, potem pa se lahko enostavno uporablja kot navadna tabela.</p>
+            </div>
+            <div class="info-card">
+                <h3>Varnost podatkov</h3>
+                <p>Omogočajo omejitev dostopa uporabnikov do določenih stolpcev ali vrstic v osnovnih tabelah. Uporabniki lahko vidijo samo podatke, do katerih imajo dovoljenje za dostop.</p>
+            </div>
+            <div class="info-card">
+                <h3>Doslednost podatkov</h3>
+                <p>Zagotavljajo enoten pogled na podatke, kar olajša razvoj aplikacij in zmanjšuje možnost napak pri pisanju ponavljajočih se poizvedb.</p>
+            </div>
+        </div>
+        
+        <div class="flex-container">
+            <div class="text-section">
+                <h2>Vrste SQL Viewov</h2>
+                <p>V SQL poznamo različne vrste viewov:</p>
+                <ul>
+                    <li><strong>Enostavni viewi</strong> - temeljijo na eni tabeli in ne vsebujejo funkcij ali združevanj</li>
+                    <li><strong>Kompleksni viewi</strong> - temeljijo na več tabelah in lahko vsebujejo funkcije, združevanja ali podpoizvedbe</li>
+                    <li><strong>Materializirani viewi</strong> - fizično shranjujejo rezultate poizvedbe za hitrejši dostop</li>
+                    <li><strong>Posodobljivi viewi</strong> - omogočajo spreminjanje podatkov preko viewa</li>
+                </ul>
+                <p>Viewi so močno orodje v rokah razvijalcev podatkovnih baz, saj povečujejo produktivnost, izboljšujejo varnost in zagotavljajo konsistentnost pri delu s podatki.</p>
+            </div>
+
+        </div>
+    </main>
+    <footer>&copy; 2025 Seminar o podatkovnih bazah</footer>
+</body>
+</html>
